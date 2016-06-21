@@ -1,0 +1,36 @@
+# -*- coding: utf-8; mode: tcl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:ft=tcl:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem          1.0
+
+name 		    bart
+version		    0.3.01test
+
+categories          science
+platforms           darwin
+license             BSD
+
+maintainers         frankong
+description         Image reconstruction toolbox for Magnetic Resonance Imaging
+long_description    Image reconstruction toolbox for Magnetic Resonance Imaging
+
+homepage            http://mrirecon.github.io/bart/
+master_sites	    https://github.com/mrirecon/bart/archive/
+distfiles	    v${version}.tar.gz
+
+checksums           rmd160  19a5c0ae623e9b9561e7cd902649099df45ca543 \
+                    sha256  3c34b28ce3151f7f1ffe23b16fb0014123668b22e316b842e32ec125a079d09a
+
+depends_lib         port:fftw-3-single \
+		    port:gcc5 \
+		    port:openblas \
+		    port:libpng
+
+configure.cc        ${prefix}/bin/gcc-mp-5
+
+build.args-append   CC=${configure.cc}
+
+use_configure	    no
+
+build.target	    
+use_parallel_build  no
